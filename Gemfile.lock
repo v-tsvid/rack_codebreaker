@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/v-tsvid/codebreaker.git
+  remote: git://github.com/v-tsvid/codebreaker.git
   revision: aee912de787593cb5be74bd6a91de4672ff43d10
   specs:
     codebreaker (0.1.0)

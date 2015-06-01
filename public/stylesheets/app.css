@@ -1,0 +1,57 @@
+body {
+  background-color: #708090;
+  color: #BEBEBE;
+}
+
+h1, h3 {
+  color: white;
+}
+
+#container {
+  float: left;
+  width: 60%;
+  background-color: #27408B;
+  padding: 1%;
+  padding-right: 4%;
+  padding-left: 4%;
+  margin: 1%;
+  min-height: 90vh;
+}
+
+#fields {
+  float: left;
+  width: 70%;
+}
+
+.text {
+  width: 12vw;
+}
+
+.button {
+  width: 12vw;
+}
+
+#scores {
+  float: right;
+  width: 20%;
+  background-color: #27408B;
+  padding: 1%;
+  padding-right: 4%;
+  padding-left: 4%;
+  margin: 1%;
+  min-height: 90vh;
+}
+
+#guess-hint {
+  float: left;
+  width: 70%;
+}
+
+#gameplay {
+  float: left;
+  width: 30%;
+}
+
+ul {
+  list-style-type: none;
+}

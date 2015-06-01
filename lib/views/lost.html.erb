@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Codebreaker</title>
+    <link rel="stylesheet" href="/stylesheets/app.css">
+  </head>
+  <body> 
+    <div id = "container">
+      <h1>It's Codebreaker Game</h1>
+      <h3>You lost...</h3>
+      <!-- <p><%= get_cookies %></p> -->
+      <!-- <p><%= get_cookie("game") %></p> -->
+      <input type="button" value="Play again" onClick="window.location='/play_again';">
+      <input type="button" value="New game" onClick="window.location='/';">
+    </div>
+    <%= render "shared/scores.html.erb" %> 
+  </body>
+</html>

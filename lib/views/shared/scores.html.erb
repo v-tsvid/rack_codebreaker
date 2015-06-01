@@ -1,0 +1,6 @@
+<div id = "scores">
+  <h1>Scores</h1>
+  <% get_scores.sort_by{ |h| h[:score] }.reverse.each do |record| %>
+    <p><%= "#{record[:name]}, #{record[:score]}" %></p>
+  <% end %>
+</div>

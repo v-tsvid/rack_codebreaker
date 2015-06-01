@@ -1,0 +1,5 @@
+---
+- :name: sharikov
+  :score: 400
+- :name: bormentahl
+  :score: 350

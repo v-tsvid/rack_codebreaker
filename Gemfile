@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
 gem 'rack'
-gem 'codebreaker', :git => 'https://github.com/v-tsvid/codebreaker.git'
+gem 'codebreaker', :git => "git://github.com/v-tsvid/codebreaker.git"
