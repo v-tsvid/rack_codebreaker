@@ -3,3 +3,9 @@
   :score: 400
 - :name: bormentahl
   :score: 350
+- :name: '123'
+  :score: 650
+- :name: '123'
+  :score: 700
+- :name: qwerty
+  :score: 700

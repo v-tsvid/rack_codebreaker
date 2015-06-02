@@ -4,6 +4,7 @@ require "codebreaker"
 require "yaml"
 require "securerandom"
 
+
 module RackCodebreaker
   class WebCodebreaker
     def self.call(env)
@@ -19,8 +20,8 @@ module RackCodebreaker
     end
 
     def response
-      @game_uuid = @request.cookies["uuid"] || @game_uuid
-      @game = YAML.load(File.open("./data/#{@game_uuid}")) unless Exception
+      @game_uuid = @request.cookies["uuid"] if @request.cookies["gameplay"]
+      @game = YAML.load(File.open("./data/#{@game_uuid}")) if @game_uuid
       @gameplay = YAML.load(@request.cookies["gameplay"]) if @request.cookies["gameplay"]
       @scores = YAML.load(File.open("./data/scores.txt"))
 
@@ -130,7 +131,7 @@ module RackCodebreaker
 
     def attempt_remains
       @game = YAML.load(File.open("./data/#{@request.cookies["uuid"]}"))
-      (@game.attempt_count - @game.guess_count)
+      @game.attempt_count - @game.guess_count
     end
 
     def del_cookies(resp)
