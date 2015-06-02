@@ -18,6 +18,8 @@ module RackCodebreaker
     end
 
     def response
+      @game = YAML.load(@request.cookies["game"])
+      @gameplay = YAML.load(@request.cookies["gameplay"])
       @scores = YAML.load(File.open("./data/scores.txt"))
 
       case @request.path
@@ -27,8 +29,9 @@ module RackCodebreaker
       when "/start"
         status = @game.start(@request.params["name"], @request.params["attempt_count"].to_i)
         if status == false
+          @gameplay.clear
           Rack::Response.new do |response|
-            del_cookie(response)
+            del_cookies(response)
             @gameplay.push("____")
             response.set_cookie("gameplay", YAML.dump(@gameplay))
             response.set_cookie("scores", @scores)
@@ -47,11 +50,8 @@ module RackCodebreaker
       
       when "/guess"
         Rack::Response.new do |response|
-          @game = YAML.load(@request.cookies["game"])
-          @gameplay = YAML.load(@request.cookies["gameplay"])
           @gameplay.push(@request.params["guess"])
           answer = @game.submit_guess(@request.params["guess"])
-          
           @gameplay.push(answer)
           response.set_cookie("gameplay", YAML.dump(@gameplay))
           response.set_cookie("guess", @request.params["guess"])
@@ -73,9 +73,7 @@ module RackCodebreaker
         end
 
       when "/hint"
-        @game = YAML.load(@request.cookies["game"])
         h = @game.use_hint
-        @gameplay = YAML.load(@request.cookies["gameplay"])
         @gameplay.push(h)
         Rack::Response.new do |response|
           response.set_cookie("game", YAML.dump(@game))
@@ -91,10 +89,9 @@ module RackCodebreaker
         Rack::Response.new(render("lost.html.erb"))
       
       when "/play_again"
-        @game = YAML.load(@request.cookies["game"])
         @game.play_again
         Rack::Response.new do |response|
-          del_cookie(response)
+          del_cookies(response)
           @gameplay.clear.push("____")
           response.set_cookie("gameplay", YAML.dump(@gameplay))
           response.set_cookie("game", YAML.dump(@game))
@@ -131,12 +128,13 @@ module RackCodebreaker
       @game.attempt_count - @game.guess_count
     end
 
-    def del_cookie(resp)
+    def del_cookies(resp)
       resp.delete_cookie("guess")
       resp.delete_cookie("answer")
       resp.delete_cookie("hint")
       resp.delete_cookie("score")
       resp.delete_cookie("lost")
+      resp.delete_cookie("gameplay")
     end
   end
 end

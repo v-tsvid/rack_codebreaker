@@ -3,3 +3,9 @@
   :score: 400
 - :name: bormentahl
   :score: 350
+- :name: vadossdf
+  :score: 700
+- :name: vadossdf
+  :score: 650
+- :name: vadossdf
+  :score: 700
